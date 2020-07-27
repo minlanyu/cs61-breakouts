@@ -13,13 +13,10 @@ Here are a few options:
    assert(x >= 0 ? (unsigned int) x + (unsigned int) y >= (unsigned int) y :(unsigned int) x + (unsigned int) y < (unsigned int) y);
    ```
 2. ```c
-   assert((x + y) - x > y);
-   ```
-3. ```c
    assert ((x > 0 && y > 0 && INT_MAX - x > y) || (x < 0 && y < 0 && INT_MIN - x < y));
    ```
-1. ```c
-   assert(!((((unsigned int)a ^ ~(unsigned int)b) & ((unsigned int)a ^ (unsigned int)(a+b))) & 0x80000000));
+3. ```c
+   assert(~((((unsigned int)a ^ ~(unsigned int)b) & ((unsigned int)a ^ (unsigned int)(a+b))) & 0x80000000));
    ```
 
 #### memcpy
@@ -32,7 +29,7 @@ int main (int argc, char* argv[]){
     int src_size = strtol(argv[1], 0, 0);
     int dst_size = strtol(argv[2], 0, 0);
     int copy_size = strtol(argv[3], 0, 0);
-    
+
     int * src = malloc(sizeof(int) * src_size); 
     int * dst = malloc(sizeof(int) * dst_size);
     for (int i = 0; i < src_size; i ++)
@@ -153,7 +150,7 @@ struct Node {
 };
 ```
 
-The following function push a `new_data` at the front of the double linked list. Is it correct? 
+The following function pushes a `new_data` at the front of the double linked list. Is it correct? 
 ```c
 void push(struct Node** head_ref, int new_data) 
 { 
@@ -169,7 +166,7 @@ void push(struct Node** head_ref, int new_data)
     /* reset head node */
     (*head_ref) = new_node;
 
-    /* reset head node */
+    /* set prev/next for new node */
     new_node->next = (*head_ref); 
     new_node->prev = NULL;
 }
